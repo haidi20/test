@@ -49,6 +49,34 @@ if(isset($_POST['name'])){
 			  </div>
 			  <button type="submit" class="btn btn-primary">Submit</button>
 			</form>
+			<br><br>
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Category_name</th>
+			      <th>Products</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    
+			      <?php 
+			      		$no = 1;
+			      		$query = "SELECT categories.name as category_name, products.name as product_name
+								  FROM categories, products
+								  WHERE categories.id = products.category_id";
+
+						$q_is = mysqli_query($conn, $query);
+						 while ($row = mysqli_fetch_array($q_is)) {
+						 	// var_dump($row);
+					?>
+				<tr>
+					<td><?php echo $no++; ?></td>
+					<td><?php echo $row['category_name']; ?></td>
+				</tr>
+				<?php }	?>
+			  </tbody>
+			</table>
 		</div>
 	</div>
 
@@ -59,3 +87,8 @@ if(isset($_POST['name'])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
+
+<!-- SELECT categories.name as categories_name, products.name as products_name 
+								  FROM categories 
+								  INNER JOIN products ON categories.id = products.category_id 
+								  GROUP by categories_name -->

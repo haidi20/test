@@ -27,6 +27,6 @@ VALUES (1, 'Sampo', 1)
 ,(4, 'Mie Sedap', 2)
 ,(5, 'Nuget', 3);
 
-SELECT categories.name as category_name, products.name as products_name 
-FROM categories 
-INNER JOIN products ON categories.ID = products.category_id;
+SELECT categories.name as category_name, products.name as product_name
+FROM categories, products
+WHERE categories.id = products.category_id
